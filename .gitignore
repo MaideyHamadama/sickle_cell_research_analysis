@@ -1,0 +1,7 @@
+*.xls
+*.xlsx
+*.code-workspace
+__pycache__
+*.json
+virtual_env/
+Analysis plan.txt
