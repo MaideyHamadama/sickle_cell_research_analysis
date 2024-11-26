@@ -7,9 +7,9 @@ def run():
     df = load_cleaned_data()
 
     # Filter key variables
-    df = df[['CODE', 'AGE', 'AGE_DE_DIAGNOSTIC', 'DECEDES', 'VACCINSAJOUR',
+    df = df[['AGE', 'AGE_DE_DIAGNOSTIC', 'DECEDES', 'VACCINSAJOUR',
              'AGEAUDECES', 'TAUXHB', 'HYDREA']]
-    
+        
     # Replace 2 by 0 and leave out the 1 in the death variable
     df['DECEDES'] = df['DECEDES'].replace(2,0)
     
@@ -17,6 +17,10 @@ def run():
     df['AGEAUDECES'] = pd.to_numeric(df['AGEAUDECES'], errors='coerce')
     df = df.dropna(subset=['AGEAUDECES'])
     
+    # Visualize outliers and dispersion in variables
+    box_plot(df)
+    print(df[df['AGE'] > 60])
+ 
     # Adding new variable timeline
     df['timeline'] = np.where(df['AGE_DE_DIAGNOSTIC'].isnull(), df['AGE'], df['AGE'] - df['AGE_DE_DIAGNOSTIC'])
     

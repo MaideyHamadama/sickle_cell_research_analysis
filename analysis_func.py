@@ -2,18 +2,16 @@
 import numpy as np
 import pandas as pd
 import scipy.stats as stats
-import os
-import statistics
 import seaborn as sns
 import statsmodels.api as sm
 from math import *
 from matplotlib import pyplot as plt
-from scipy.stats import iqr,kstest,shapiro,chi2_contingency
+# from scipy.stats import iqr,kstest,shapiro,chi2_contingency
 from numpy.random import seed
 from statsmodels.stats.outliers_influence import variance_inflation_factor
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report, confusion_matrix
+# from sklearn.model_selection import train_test_split
+# from sklearn.linear_model import LogisticRegression
+# from sklearn.metrics import classification_report, confusion_matrix
 from lifelines import CoxPHFitter
 
 # Charging analysis file
@@ -70,13 +68,17 @@ def histogram(df, var, title, color='blue'):
     plt.show()
     
 # Box plots
-def box_plot(df, main_var, secondary_var):
+def box_plot(df, main_var=None, secondary_var=None):
     """ Used to visualize distribution of one continuous variable and identify outliers in the dataset
     - It is used to summarize the distribution of a continuous variable
     - Display the mean, quartiles and outliers
     - Compare the box plots between groups (for e.g Vaccinated and non vaccinated) helps identify the differences in distributions"""
     plt.figure(figsize=(10,6))
     df.boxplot(column=main_var, by=secondary_var, grid=False)
+    if main_var == secondary_var == None:
+        plt.suptitle('')
+        plt.show()
+        return 0
     plt.xlabel(secondary_var)
     plt.ylabel(main_var)
     plt.title("Box plot : " + main_var + " by " + secondary_var)

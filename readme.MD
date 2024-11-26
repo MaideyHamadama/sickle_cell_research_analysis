@@ -91,6 +91,14 @@ df.to_excel('data_cleaned.xlsx', index=False)
 
 The `to_excel()` function is used to create the excel format of the cleaned data
 
+On the figure below we can view some outliers in the age, age at diagnostic and age at death variables
+
+***BOX PLOTS***
+
+!["Box plot of variables"](box_plots.png)
+
+Regarding the sample size of these outliers and the sample size of the dataset, we can neglect the effects of the outliers in the analysis.
+
 # 2. Data Manipulation and Preparation
 
 After loading and cleaning the inital dataset, we filter from the cleaned dataset the important variables to the analysis. Given the main objectives of the analysis are :
